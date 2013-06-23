@@ -3,5 +3,119 @@ layout: default
 title: Instagr.am jQuery Plugin
 ---
 
-Testing...
 
+<div class="container">
+  <div class="row-fluid">
+    
+    <div role="complementary" class="span3" style="position: relative;">
+      <div class="sticky">
+      {% include sidebar.html %}
+      </div>
+    </div>
+    
+    
+    <div role="main" class="span9">
+      
+      <div id="readme" data-anchor="readme">
+        <p>
+          <a href="https://github.com/pongstr/pongstagr.am" class="lead"><strong>pongstagr.am</strong></a> 
+            <br />is a jQuery plugin that lets display your instagram media to 
+                  your website using <a href="http://twitter.github.io/bootstrap/" title="Bootstrap v3.2">Bootstrap</a> 
+                  Front-end styles and modal-plugin.
+        </p>
+        
+        <br /> 
+
+        <p class="lead"><strong>requirements:</strong></p>
+        <p>
+          For the most part, Instagram’s API only requires the use of a client_id. 
+          A client_id simply associates your server, script, or program with a 
+          specific application. However, some requests require authentication - 
+          specifically requests made on behalf of a user. Authenticated requests 
+          require an access_token. These tokens are unique to a user and should 
+          be stored securely. Access tokens may expire at any time in the future. 
+          <a href="http://instagram.com/developer/authentication/">more here</a>.      
+        </p>
+        
+        <br />
+             
+        <ol>
+          <li>Instagram account, User ID and Access Token</li>
+          <li>jQuery 1.8+</li>
+          <li>bootstrap-modal.js (or bootstrap.js || bootstrap.min.js )</li>
+        </ol>
+        
+        <br />
+          
+        <p class="lead"><strong>usage:</strong></p>
+
+        <ol>
+          <li>
+            <p>
+              <strong>User ID</strong>:  If you have zero idea what your user id is, you may 
+              head to this <a href="http://jelled.com/instagram/lookup-user-id">link</a>.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Access Token</strong>: to get your access token, you may 
+              head to this <a href="http://jelled.com/instagram/access-token">link</a>, 
+              <br /> make sure you follow the instructions on the <strong>"How do I 
+              get my client id?"</strong> link.         
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>jQuery</strong>  must be initialised first and so as the
+              <strong>bootstrap</strong> plugin:
+            </p>
+
+<pre>
+&lt;script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'&gt;&lt;/script>
+&lt;script src='path/to/js/bootstrap.min.js'&gt;&lt;/script&gt;  
+&lt;script src='path/to/js/pongstagr.am.js'&gt;&lt;/script&gt;  
+</pre>
+
+            <p>
+              <strong>using the plugin:</strong>
+            </p>
+<pre>
+$('div#selector').pongstgrm({
+  accessId     : YourAccessID,
+  accessToken  : YourAccessToken
+});
+</pre>
+
+            <p>
+              By default the plugin displays eight (8) most recent media.
+            </p>
+
+          </li>
+        </ol>
+
+      </div>
+      
+      <div id="recent-media" data-anchor="recent-media">  
+        {% include exmpl-recent-media.html %}
+      </div>
+      
+      <div id="liked-media" data-anchor="liked-media">
+        {% include exmpl-liked-media.html %}
+      </div>
+      
+      <div id="user-media" data-anchor="user-media">
+        {% include exmpl-user-feed.html %}
+      </div>
+            
+      <div id="license">
+        {% include license.html %}
+      </div>
+
+      <div id="comments">
+        {% include disqus-thread.html %}
+      </div>
+      
+    </div><!-- end of .span8.offset1 -->
+  
+  </div><!-- end of .row-fluid -->
+</div><!-- end of .container -->

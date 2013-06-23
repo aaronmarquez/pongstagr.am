@@ -4448,10 +4448,10 @@ input[type="submit"].btn.btn-mini {
   outline: none;
 }
 .modal.fade {
-  -webkit-transition: opacity .3s linear, top .3s ease-out;
-  -moz-transition: opacity .3s linear, top .3s ease-out;
-  -o-transition: opacity .3s linear, top .3s ease-out;
-  transition: opacity .3s linear, top .3s ease-out;
+  -webkit-transition: opacity 150ms linear, top 150ms ease-out;
+  -moz-transition: opacity 150ms linear, top 150ms ease-out;
+  -o-transition: opacity 150ms linear, top 150ms ease-out;
+  transition: opacity 150ms linear, top 150ms ease-out;
   top: -25%;
 }
 .modal.fade.in {

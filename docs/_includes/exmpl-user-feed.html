@@ -1,0 +1,24 @@
+
+<hr />
+
+<p class="lead">
+  Initialise <strong>'user feed'</strong> media.
+</p>
+
+<pre>
+&lt;script&gt;
+  $(document).ready(function(){
+    $('selector').pongstgrm({
+      accessId    : YourAccessID,
+      accessToken : YourAccessToken,
+      show        : 'feed',
+      count       : 4,
+      pager       : true
+    });
+  });
+&lt;/script&gt;  
+</pre>
+
+<br />
+
+<div id="feed" class="well well-small"></div>

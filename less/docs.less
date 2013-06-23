@@ -1,3 +1,90 @@
 // Documentation Stylesheet
 // ========================
 
+@import "bootstrap/variables.less";
+@import "bootstrap/mixins.less";
+@import "bootstrap/glyphicons.less";
+
+// remove focus outline pls
+*:focus { outline : 0 none !important; }
+
+// custom horizontal rule
+hr {
+  height     : 4px;
+  margin     : 20px 0 !important;
+  
+  background : transparent url('../img/github-hr.png') center center repeat-x !important;
+  border     : 0 none;
+}
+
+// nav-stacked mods
+[role="complementary"] > .sticky > .nav-stacked {
+  li { 
+    position: relative;
+    font-weight: bold;
+    
+    &:first-child { &:after { content: ""; }}
+    &:after {
+      position : absolute;
+      top      : 8px;
+      right    : 12px;
+      
+      font-family : 'Glyphicons Halflings';
+      font-style  : normal;
+      font-weight : normal;
+      color       : #999;
+      text-shadow : 0 1px 1px #fff;
+      content     : "\e080";
+      
+     -webkit-font-smoothing: antialiased;
+    }
+    
+    &.nav-header {
+      display : block;
+      padding : 4px 15px;
+      
+      font-size        : 11px;
+      font-weight      : bold;
+      line-height      : @baseLineHeight;
+      color            : @grayLight;
+      text-shadow      : 0 1px 0 rgba(255,255,255,.75);
+      text-transform   : uppercase;
+      background-color : #f4f4f4;
+      border           : 1px solid #ddd;
+      border-bottom    : 0 none;
+      
+      .border-top-left-radius(4px);
+      .border-top-right-radius(4px);
+    }
+    
+    &.active:after {
+      color: #666;
+      text-shadow: 0 1px 1px #fff;
+    }
+    
+    a { 
+      font-weight : normal; 
+      font-size   : 12px;
+      color       : @gray;
+    }
+  }    
+}
+.sticky {
+  width  : 250px !important;
+}
+
+// thumbnails fix
+.thumbnails {
+  margin-bottom : 0 !important;
+  padding-bottom: 0 !important;
+  
+  > li {
+    margin-top    : 5px !important;
+    margin-bottom : 5px !important;    
+  }
+  
+  > li.span2:nth-child(6n+1),
+  > li.span3:nth-child(4n+1),
+  > li.span4:nth-child(3n+1),
+  > li.span6:nth-child(2n+3){ margin-left : 0 !important; }
+}

@@ -4,7 +4,7 @@
  * Version: 2.0.5
  * Code license under Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
- * Requires: jQuery v1.9 and Bootstrap JS
+ * Requires: jQuery v1.9 and Bootstrap 3.2 js
  */
 
 ;(function ($, window, document, undefined){
@@ -138,7 +138,6 @@
         event.preventDefault();
           ajaxRequest( nextUrl, targetElement );  //*! Load Succeeding Pages.
           $(this).unbind(event);   //*! Unbind all attached events.
-          console.log( )
       });
     }
   }
@@ -201,10 +200,10 @@
     accessToken  : null,  // instagram access-token
 
     // Display options
-    show         : null,    // string,  options: 'recent', 'feed', 'liked', 'user'
-    count        : null,    // integer, options: 1(min) - 40(max), instagram limits the maximum number of photos to 40
-    resolution   : null,    // string,  options: 'low_resolution', 'standard_resolution'
-    pager        : null     // boolean, options:  true or false (enables/disable load more button)
+    show         : null,  // string,  options: 'recent', 'feed', 'liked', 'user'
+    count        : null,  // integer, options: 1(min) - 40(max), instagram limits the maximum number of photos to 40
+    resolution   : null,  // string,  options: 'low_resolution', 'standard_resolution'
+    pager        : null   // boolean, options:  true or false (enables/disable load more button)
     
   };
    

@@ -1,0 +1,13 @@
+
+# Dependencies
+markdown:     rdiscount
+pygments:     true
+
+# Permalinks
+permalink:    pretty
+
+# Server
+source:       ./docs
+destination:  ./_gh_pages
+port:         9001
+url:          http://pongstagram.dev:4001

@@ -95,7 +95,7 @@
             var modalHeight = $('body').height(); 
             
                 $('.modal').attr('id', imageId );
-                $('body').css({ 'padding-bottom' : modalHeight * 1.5 });
+                // $('body').css({ 'padding-bottom' : modalHeight * 1.5 });
             
             renderModal( imageOwner, imageId, imgCaption, imageUrl, imgUser, comments );
             

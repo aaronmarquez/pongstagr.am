@@ -518,6 +518,13 @@
 .glyphicon-collapse-top:before {
   content: "\e160";
 }
+[role="main"] {
+  padding: 20px;
+  border: 1px solid #eee;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
 *:focus {
   outline: 0 none !important;
 }
@@ -572,22 +579,27 @@ hr {
 [role="complementary"] > .sticky > .nav-stacked li a {
   font-weight: normal;
   font-size: 12px;
-  color: #555555;
+  color: #049cdb;
+}
+[role="complementary"] > .sticky > .nav-stacked li a.active {
+  background: #eeeeee;
+  color: #555555 !important;
 }
 .sticky {
   width: 250px !important;
 }
-.thumbnails {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
+.social-media-download-bar {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
-.thumbnails > li {
-  margin-top: 5px !important;
-  margin-bottom: 5px !important;
-}
-.thumbnails > li.span2:nth-child(6n+1),
-.thumbnails > li.span3:nth-child(4n+1),
-.thumbnails > li.span4:nth-child(3n+1),
-.thumbnails > li.span6:nth-child(2n+3) {
-  margin-left: 0 !important;
+.social-media-download-bar .span10 {
+  padding-top: 12px;
 }

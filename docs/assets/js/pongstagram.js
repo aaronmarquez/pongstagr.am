@@ -54,7 +54,7 @@
     
     $('#' + imageId ).on('hidden', function(){
       $(this).remove();
-      $('body').removeAttr('style');
+      // $('body').removeAttr('style');
     });
   }
 
@@ -92,10 +92,10 @@
           $('[data-reveal-id="' + imageId + '"]').click(function(){
             
             // add padding to body to be able to scroll
-            var modalHeight = $('body').height(); 
+            // var modalHeight = $('body').height(); 
             
                 $('.modal').attr('id', imageId );
-                $('body').css({ 'padding-bottom' : modalHeight * 1.5 });
+                // $('body').css({ 'padding-bottom' : modalHeight * 1.5 });
             
             renderModal( imageOwner, imageId, imgCaption, imageUrl, imgUser, comments );
             

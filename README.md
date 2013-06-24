@@ -26,7 +26,7 @@ your website.
    [link](http://jelled.com/instagram/access-token) make sure you follow the instructions 
    on the ***How do I get my client id?*** link. 
 
-
+---------
 
 **jquery** must be initialised first and so as **bootstrap.js** plugins:
 
@@ -38,7 +38,7 @@ your website.
 
 Display recently uploaded media (displays 8 images):
   
-```html
+```javascript
 $('div#selector').pongstgrm({
     accessId     : YourAccessID,
     accessToken  : YourAccessToken
@@ -49,7 +49,7 @@ $('div#selector').pongstgrm({
   
 ---------
   
-```html
+```javascript
 show       : null,    // string,  options: 'recent', 'feed', 'liked', 'user'
 count      : null,    // integer, options: 1(min) - 40(max), instagram limits the maximum number of photos to 40
 pager      : null     // boolean, options:  true or false (enables/disable load more button)
@@ -57,7 +57,7 @@ pager      : null     // boolean, options:  true or false (enables/disable load 
   
   ***Usage Example:***
 
-```html
+```javascript
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
 <script src='path/to/js/bootstrap-modal.js'></script>  
 <script src='path/to/js/pongstagr.am.js'></script>

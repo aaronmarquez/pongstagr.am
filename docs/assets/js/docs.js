@@ -21,7 +21,7 @@ $(window).load(function(){
        $target = $(target);
        
     $('html, body').stop().animate({
-        'scrollTop': $target.offset().top
+        'scrollTop': $target.offset().top  - 10
     }, { duration: 1250, easing: 'easeInOutExpo'}, function () {
         window.location.hash = target;
         return false;
@@ -29,8 +29,8 @@ $(window).load(function(){
 
     // Sub-Pages Navigation
     // ====================
-    if ( $('.nav li').length > 0 ){
-      $('.nav li').removeClass('active');
+    if ( $('.nav li a').length > 0 ){
+      $('.nav li a').removeClass('active');
       $(this).addClass('active');
     } 
   });

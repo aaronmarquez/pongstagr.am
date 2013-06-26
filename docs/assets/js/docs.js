@@ -9,48 +9,46 @@ $(window).load(function(){
   
   "use strict";
   
-  if ( $('#default').length > 0 ){
-    // Sticky Navbar
-    // =============
-    $('.sticky').affix();
+  // Sticky Navbar
+  // =============
+  $('.sticky').affix();
 
-    // Smooth scroll for internal links
-    // ================================
-    $('.nav a[href^="#"]').on('click',function (e) {
-      e.preventDefault();
-      var target = this.hash,
-         $target = $(target);
-         
-      $('html, body').stop().animate({
-          'scrollTop': $target.offset().top  - 10
-      }, { duration: 1250, easing: 'easeInOutExpo'}, function () {
-          window.location.hash = target;
-          return false;
-      });
-
-      // Sub-Pages Navigation
-      // ====================
-      if ( $('.nav li a').length > 0 ){
-        $('.nav li a').removeClass('active');
-        $(this).addClass('active');
-      } 
+  // Smooth scroll for internal links
+  // ================================
+  $('.nav a[href^="#"]').on('click',function (e) {
+    e.preventDefault();
+    var target = this.hash,
+       $target = $(target);
+       
+    $('html, body').stop().animate({
+        'scrollTop': $target.offset().top  - 10
+    }, { duration: 1250, easing: 'easeInOutExpo'}, function () {
+        window.location.hash = target;
+        return false;
     });
 
-    // Update Navdots status onScroll
-    // ==============================
-    // $(window).scroll(function(){
-    //   var windowScroll = $(window).scrollTop();
-    //
-    //   if ( windowScroll >= 50 ){
-    //     $('[role="main"] > div').each(function(i){
-    //       if ($(this).position().top <= windowScroll + 50 ){
-    //         $('.nav a').removeClass('active');
-    //         $('.nav a').eq(i).addClass('active');
-    //       }
-    //     });
-    //   }
-    // }).scroll();
-  }  
+    // Sub-Pages Navigation
+    // ====================
+    if ( $('.nav li a').length > 0 ){
+      $('.nav li a').removeClass('active');
+      $(this).addClass('active');
+    } 
+  });
+
+  // Update Navdots status onScroll
+  // ==============================
+  // $(window).scroll(function(){
+  //   var windowScroll = $(window).scrollTop();
+  //
+  //   if ( windowScroll >= 50 ){
+  //     $('[role="main"] > div').each(function(i){
+  //       if ($(this).position().top <= windowScroll + 50 ){
+  //         $('.nav a').removeClass('active');
+  //         $('.nav a').eq(i).addClass('active');
+  //       }
+  //     });
+  //   }
+  // }).scroll();
   
   var usr = '39666111',
       tkn = '39666111.1fb234f.c3901000b4944a549fd5fd2310c63780';

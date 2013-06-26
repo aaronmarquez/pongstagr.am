@@ -4,7 +4,7 @@
  * Version: 2.0.6
  * Code license under Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
- * Requires: jQuery v1.9 and Bootstrap 3.2 js
+ * Requires: jQuery v1.8+
  */
 
 ;(function ($, window, document, undefined){
@@ -16,7 +16,6 @@
         paginateTarget    = $(targetElement).attr('id'),
         paginateBtn       = '<a href="javascript:void(0);" class="btn" data-paginate="'+ paginateTarget +'">Load More</a>';
   
-    
     $( targetElement )
         .addClass( 'pongstagram' )
         .append( galleryList );

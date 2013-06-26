@@ -1,3 +1,15 @@
+/*!
+ * jQuery Pongstagr.am Plugin 
+ * Copyright (c) 2013 Pongstr Ordillo
+ * Version: 2.0.6
+ * Code license under Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Requires: jQuery v1.8+
+ */
+ 
+// Normalize Stylesheet
+@import "http://necolas.github.io/normalize.css/2.1.2/normalize.css";
+
 
 // Bootstrap Less Stylesheets
 // --------------------------
@@ -5,11 +17,7 @@
 @import "bootstrap/mixins.less";
 
 
-// Normalize Stylesheet
-@import "http://necolas.github.io/normalize.css/2.1.2/normalize.css";
-
-
-// Plugin Styles
+/* Container Styles */
 .pongstagram {
   display: block;
   clear  : both;
@@ -20,7 +28,8 @@
   border : 1px solid #ddd;  
  .box-sizing(border-box);
  .border-radius(4px);
- 
+  
+  /* Default styles */
   * {
     margin      : 0;
     padding     : 0;
@@ -43,7 +52,6 @@
     margin  : 5px 0;
     padding : 0 10px;
     
-    
     list-style: none;
     
     > li {
@@ -54,10 +62,12 @@
       margin-top    : 5px;
       margin-bottom : 5px;
       
+      /* Remove margin on 4th column of every row */
       &:nth-child(4n+1) { margin-left: 0 !important; }
     }   
   }
   
+  /* Button Styles */
   .btn {
     display : block;
     width   : 180px;
@@ -76,12 +86,14 @@
     background : #111;
    .border-radius(2px);
    .transition(all 150ms linear);
-   
+    
+    /* Button Hover */
     &:hover {
       background : #333;
      .transition(all 150ms linear);
     }
     
+    /* Button Active */
     &:active {
       background : #222;
      .transition(all 150ms linear);

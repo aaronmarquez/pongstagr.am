@@ -21,4 +21,8 @@
 
 <br />
 
-<div id="feed" class="well well-small"></div>
+{% if page.title == "Bootstrap Front-end" %}
+  <div id="feed" class="well well-small"></div>
+{% else %}
+  <div id="feed"></div>
+{% endif %}

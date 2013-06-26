@@ -1,33 +1,34 @@
 ---
 layout: default
-title: Bootstrap Front-end
+title:  Lite
 ---
-
-
-<div id="default" class="container">
+  
+  
+<div id="vanilla" class="container">
   <div class="row-fluid">
-    
+
     <div role="complementary" class="span3" style="position: relative;">
       <div class="sticky">
-      {% include sidebar.html %}
+      <!-- {% include sidebar.html %} -->
       </div>
     </div>
-    
-    
+
     <div role="main" class="span9">
 
       {% include download.html %}    
-                        
+
       <div id="readme" data-anchor="readme">
         <p>
-          <a href="https://github.com/pongstr/pongstagr.am" class="lead"><strong>pongstagr.am</strong></a> 
+          <a href="https://github.com/pongstr/pongstagr.am" class="lead"><strong>pongstagr.am plugin-only</strong></a> 
         </p>
-        
-        <p>is a jQuery plugin that lets display your instagram media to 
-            your website using <a href="http://twitter.github.io/bootstrap/" title="Bootstrap v3.2">Bootstrap</a> 
-            Front-end styles and modal-plugin.
+
+        <p>
+          is a jQuery plugin that lets display your instagram media to your website.
+          Basically same plugin <strong>minus Bootstrap styles.</strong> so that
+          means you can choose what ever modal plugin or front-end framework to
+          use by extending it via your own <code>css</code> or <code>js</code>.  
         </p>
-        
+
         <hr />
         
         <p class="lead"><strong>requirements:</strong></p>
@@ -46,17 +47,16 @@ title: Bootstrap Front-end
         <ol>
           <li>Instagram account, User ID and Access Token</li>
           <li>jQuery 1.8+</li>
-          <li>bootstrap-modal.js (or bootstrap.js || bootstrap.min.js )</li>
         </ol>
         
         <br />
         
         <p>
-          or you can head over here to use the <a href="plugin-only"><strong>plugin-only version</strong></a> (one that doesn't rely on Bootstrap Front-end).
+          or you can head over here to use the <a href="/"><strong>Bootstrap version</strong></a> (one that relies on Bootstrap Front-end).
         </p>
-        
+                
         <hr />
-          
+
         <p class="lead"><strong>usage:</strong></p>
 
         <ol>
@@ -102,7 +102,6 @@ $('div#selector').pongstgrm({
 
           </li>
         </ol>
-
       </div>
       
       <div id="recent-media" data-anchor="recent-media">  
@@ -124,7 +123,7 @@ $('div#selector').pongstgrm({
       <div id="comments">
         {% include disqus-thread.html %}
       </div>
-      
+
     </div><!-- end of .span9 -->
   
   </div><!-- end of .row-fluid -->

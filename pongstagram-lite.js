@@ -25,6 +25,20 @@
       }   
   }
 
+  function imagePreLoader( imageId ){
+    var $image    = $( imageId ),
+         spinner  = imageId + '-ldr',
+         preloadr = 0,
+         total    = $image.length;          
+    $image.hide();
+    $image.load(function(){
+      if ( ++preloadr === total ){
+        $image.fadeIn('fast');
+        $(spinner).fadeOut('fast').remove();
+      }
+    });
+  }
+  
   function ajaxRequest( endpoint, targetElement ){
     $.ajax({
       method   : "GET"    ,
@@ -38,14 +52,19 @@
         $.each( data.data, function( key, value ){
           
           var thumbnail   = value.images.low_resolution.url,
+              imageId     = value.id,
               imgFullRes  = value.images.standard_resolution.url,
               imgCaption  = ( value.caption !== null ) ? ( value.caption.text !== null ) ? value.caption.text : '' : value.user.username;
           
           var thumbBlock  = '<li>';
-              thumbBlock += '<a href="' + imgFullRes + '"><img src="' + thumbnail + '" alt="'+ imgCaption +'" /></a>';
+              thumbBlock += '<div id="'+ imageId +'-thmb-ldr" class="loader"></div>';
+              thumbBlock += '<a href="' + imgFullRes + '"><img src="' + thumbnail + '" alt="'+ imgCaption +'" id="' + value.id + '-thmb" /></a>';
               thumbBlock += '</li>'; 
-          
+
+          // Append Images          
           $( injectTo + ' ul' ).append( thumbBlock );
+          // Preload images
+          imagePreLoader( '#' + imageId + '-thmb' );
           
         });
         

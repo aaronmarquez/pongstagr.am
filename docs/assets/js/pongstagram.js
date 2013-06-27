@@ -1,7 +1,7 @@
 /*!
  * jQuery Pongstagr.am Plugin 
  * Copyright (c) 2013 Pongstr Ordillo
- * Version: 2.0.5
+ * Version: 2.0.6
  * Code license under Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  * Requires: jQuery v1.9 and Bootstrap 3.2 js
@@ -55,15 +55,14 @@
 
   function imagePreLoader( imageId ){
     var $image    = $( imageId ),
+         spinner  = imageId + '-ldr',
          preloadr = 0,
          total    = $image.length;          
     $image.hide();
     $image.load(function(){
-      if (++preloadr === total) {
+      if ( ++preloadr === total ){
         $image.fadeIn('fast');
-        $('.thumbnails li .thumbnail').each(function(){
-          $('.loader').delay('500').fadeOut().remove();
-        });
+        $(spinner).fadeOut('fast').remove();
       }
     });
   }
@@ -91,17 +90,18 @@
                             
           var thumbBlock  = '<li class="span3">';
               thumbBlock += '<div class="thumbnail">';
-              thumbBlock += '<div class="loader"></div>';
+              thumbBlock += '<div id="'+ imageId +'-thmb-ldr" class="loader"></div>';
               thumbBlock += '<a href="#" class="btn btn-mini btn-info btn-likes"><i class="icon-heart icon-white"></i> &nbsp;' + likes + '</a>';
               thumbBlock += '<a href="#" class="btn btn-mini btn-info btn-comments"><i class="icon-comment icon-white"></i> &nbsp;' + comments + '</a>';
-              thumbBlock += '<a href="#" role="button" data-toggle="modal" data-reveal-id="' + imageId + '"><img src="' + thumbnail + '" alt="' + imgCaption + '" id="' + value.id + '-thumbnail" /></a>';
+              thumbBlock += '<a href="#" role="button" data-toggle="modal" data-reveal-id="' + imageId + '"><img src="' + thumbnail + '" alt="' + imgCaption + '" id="' + value.id + '-thmb" /></a>';
               thumbBlock += '</div>';
               thumbBlock += '</li>';
-                        
+          
+          // Inject Thumbnaisl to container              
           $( injectTo + ' .thumbnails' ).append( thumbBlock );
           
-          
-          imagePreLoader( '#' + imageId + '-thumbnail' );
+          // Preload images
+          imagePreLoader( '#' + imageId + '-thmb' );
           
           $('[data-reveal-id="' + imageId + '"]').click(function(){
                         
@@ -110,7 +110,6 @@
             renderModal( imageOwner, imageId, imgCaption, imageUrl, imgUser );
             
             $.each( value.comments.data, function( group, key ){
-              
               var commentBlock  = '<div class="row-fluid">';
                   commentBlock += '<div class="span2 text-center"><img src="' + key.from.profile_picture + '" style="width: 36px; height: 36px; margin-right: 10px; vertical-align: middle;" class="img-polaroid" /></div>';
                   commentBlock += '<div class="span10">';
@@ -123,7 +122,6 @@
             });            
 
             $('#' + imageId ).modal(); //*! fire modal window
-            
           });
         });
 

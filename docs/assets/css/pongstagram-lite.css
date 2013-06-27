@@ -1,4 +1,12 @@
 @import "http://necolas.github.io/normalize.css/2.1.2/normalize.css";
+/*!
+ * jQuery Pongstagr.am Plugin 
+ * Copyright (c) 2013 Pongstr Ordillo
+ * Version: 2.0.6
+ * Code license under Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Requires: jQuery v1.8+
+ */
 .clearfix {
   *zoom: 1;
 }
@@ -26,6 +34,7 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+/* Container Styles */
 .pongstagram {
   display: block;
   clear: both;
@@ -39,6 +48,10 @@
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  /* Default styles */
+
+  /* Button Styles */
+
 }
 .pongstagram * {
   margin: 0;
@@ -66,9 +79,15 @@
   display: inline-block;
   width: 23.404255319148934%;
   *width: 23.351063829787233%;
+  min-height: 170px;
   margin-left: 2.127659574468085%;
   margin-top: 5px;
   margin-bottom: 5px;
+  vertical-align: middle;
+  position: relative;
+  border: 1px solid #ddd;
+  /* Remove margin on 4th column of every row */
+
 }
 .pongstagram ul > li:nth-child(4n+1) {
   margin-left: 0 !important;
@@ -94,6 +113,10 @@
   -moz-transition: all 150ms linear;
   -o-transition: all 150ms linear;
   transition: all 150ms linear;
+  /* Button Hover */
+
+  /* Button Active */
+
 }
 .pongstagram .btn:hover {
   background: #333;
@@ -108,4 +131,15 @@
   -moz-transition: all 150ms linear;
   -o-transition: all 150ms linear;
   transition: all 150ms linear;
+}
+.pongstagram .loader {
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  background: url("http://img.cdn.tl/loading2.gif") center center no-repeat;
 }

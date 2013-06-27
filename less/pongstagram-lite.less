@@ -58,13 +58,17 @@
       display       : inline-block;
       width         : 23.404255319148934%;
      *width         : 23.351063829787233%;
+      min-height    : 170px;
       margin-left   : 2.127659574468085%;
       margin-top    : 5px;
       margin-bottom : 5px;
+      vertical-align: middle;
+      position      : relative;
       
+      border: 1px solid #ddd;
       /* Remove margin on 4th column of every row */
       &:nth-child(4n+1) { margin-left: 0 !important; }
-    }   
+    }
   }
   
   /* Button Styles */
@@ -99,5 +103,19 @@
      .transition(all 150ms linear);
     }
   }
-  
+
+  // Preloader
+  .loader {
+    width : 50px;
+    height: 50px;
+    margin-top: -25px;
+    margin-left: -25px;
+    
+    position: absolute;
+    top : 50%;
+    left: 50%;
+    z-index: 1;
+    
+    background : url("http://img.cdn.tl/loading2.gif") center center no-repeat;
+  }  
 }

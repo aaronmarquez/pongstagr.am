@@ -15,3 +15,8 @@ Thumbs.db
 # Compiled Stuff
 gh-pages/
 _site/
+
+# Test Files
+test.*
+tests.*
+testing.*

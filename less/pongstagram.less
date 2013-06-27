@@ -35,11 +35,13 @@
 // ------------
 
 .modal {
+  width      : 940px;
+  max-width  : 940px; 
+  margin-left: -470px;
+  // position   : absolute;
+  // top        : 50px;
   
-  width      : 680px;
-  margin-left: -340px;
-  position   : absolute;
-  top        : 50px;
+  .border-radius(@baseBorderRadius * 3);
   
   &.fade {
    .transition(e('opacity 150ms linear, top 150ms ease-out'));
@@ -49,7 +51,12 @@
   &.fade.in { top : 10%; } 
 
   .modal-header { 
-    position : relative;
+    min-height : 20px; 
+    position   : relative;
+    
+    .border-top-left-radius(@baseBorderRadius * 3);
+    .border-top-right-radius(@baseBorderRadius * 3);
+    .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
     
     .close { 
       position: absolute; 
@@ -59,28 +66,51 @@
   }
   
   .modal-body { 
-    max-height : 660px;
-    > .row-fluid > .img-polaroid { margin-left: -6px; }
-  }
-  
-  .modal-comments > .row-fluid {
-    padding-top   : 10px;
-    padding-bottom: 10px;
-    padding-left  : 10px;
+    max-height : 640px;
+    padding    : 0;
+    margin     : 0;
     
-    font-size   : 12px;
-    line-height : 1.5;
+    .modal-img,
+    .modal-comments {
+      float      : left;
+      margin     : 0;
+      padding    : 0; 
+      overflow-y : auto;
+     .box-sizing(border-box);
+    }
+    .modal-img      { width: 60%; }
+    .modal-comments { width: 40%; }
     
-    &:nth-of-type(odd)  { background-color : #f4f4f4; }
-    &:nth-of-type(even) { background-color : #fff; }
+    .modal-img {
+      overflow : hidden; 
+      .border-bottom-left-radius(@baseBorderRadius * 3);
+    }
+    .modal-comments > .row-fluid {
+      padding : 10px;
+       
+      overflow : hidden;
+     .box-sizing(border-box); 
+
+      font-size   : 12px;
+      line-height : 1.5;
+      
+      &:nth-of-type(odd)  { 
+        border-bottom: 1px dashed #eee;
+        background-color : #f4f4f4; 
+      }
+      &:nth-of-type(even) { 
+        border-bottom: 1px dashed #ddd;
+        background-color : #fff; 
+      }
+    }
   }
-  
 }
 
 // Thumbnails
 // ----------
-
+.thumbnails { margin: 0; }
 .thumbnails > li {
+  margin  : 0;
   padding : 6px;
   cursor  : pointer;
   
@@ -88,8 +118,9 @@
  .transition(all 100ms linear);
   
   .thumbnail {
+    min-height: 150px;
     position : relative;
-    
+    background: #fff;
     &:hover {
       border : 1px solid lighten(@linkColor,30%);
      .transition(all 100ms linear);
@@ -101,6 +132,38 @@
      .transition(all 100ms linear);
      .box-shadow(0 0 5px lighten(@grayLight,2%));
     }    
+
+    img { 
+      width: 100%; 
+      height: auto; 
+      z-index: 2;
+    }
+
+    // Preloader
+    .loader {
+      width : 50px;
+      height: 50px;
+      margin-top: -25px;
+      margin-left: -25px;
+      
+      position: absolute;
+      top : 50%;
+      left: 50%;
+      z-index: 1;
+      
+      background : url("http://img.cdn.tl/loading2.gif") center center no-repeat;
+    }
+        
+    .btn-likes, .btn-comments {
+      font-weight : bold; 
+      position    : absolute; 
+      bottom      : 18px;
+      z-index     : 3; 
+    }
+    
+    .btn-likes    { left: 15px; }
+    .btn-comments { right: 15px; }
+  
   }
   
   // Fix for .thumbnails > li loop
@@ -110,15 +173,6 @@
   &.span3:nth-child(4n+1),
   &.span4:nth-child(3n+1),
   &.span6:nth-child(2n+3) { margin-left: 0 !important; }
-  
-  > img { width: 100%; height: auto; }
-  
-  .btn-likes, .btn-comments {
-    font-weight : bold; 
-    position    : absolute; 
-    bottom      : 18px;
-  }
-  
-  .btn-likes    { left: 15px; }
-  .btn-comments { right: 15px; }
+
 }
+

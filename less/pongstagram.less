@@ -4,24 +4,16 @@
  * Code license under Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  * 
+ * Use this less file if you would like to compile the plugin's
+ * styles with your heavily-customised bootstrap less files.
+ *
  */
   
-// Use this less file if you would like to compile the plugin's
-// styles with your heavily-customised bootstrap less files.
-
-
-// Importing Bootstrap CSS
-// -----------------------
-// @import "bootstrap/css/bootstrap.css" ;
-// @import "bootstrap/css/bootstrap-responsive.css";
-
-
 
 // Bootstrap Less Stylesheets
 // --------------------------
 @import "bootstrap/variables.less";
 @import "bootstrap/mixins.less";
-
 
 
 /* Pongstagr.am Custom Stuff
@@ -35,74 +27,63 @@
 // ------------
 
 .modal {
-  width      : 940px;
-  max-width  : 940px; 
-  margin-left: -470px;
-  // position   : absolute;
-  // top        : 50px;
   
-  .border-radius(@baseBorderRadius * 3);
+  width       : 940px;
+  max-width   : 940px; 
+  margin-left : -470px;  
+  overflow    : hidden;
   
+ .border-radius(0);
+ 
   &.fade {
+    top:  -20%;
    .transition(e('opacity 150ms linear, top 150ms ease-out'));
-    top:  -10%;
   }
 
-  &.fade.in { top : 10%; } 
-
-  .modal-header { 
-    min-height : 20px; 
-    position   : relative;
-    
-    .border-top-left-radius(@baseBorderRadius * 3);
-    .border-top-right-radius(@baseBorderRadius * 3);
-    .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
-    
-    .close { 
-      position: absolute; 
-      top     : 0; 
-      right   : 10px; 
-    }
-  }
+  &.fade.in { top : 3%; } 
   
   .modal-body { 
-    max-height : 640px;
+    height     : 612px;
+    max-height : 612px;
     padding    : 0;
     margin     : 0;
+    background : @white;
+    overflow   : hidden; 
     
     .modal-img,
     .modal-comments {
       float      : left;
+      height     : 612px;
       margin     : 0;
       padding    : 0; 
-      overflow-y : auto;
      .box-sizing(border-box);
     }
-    .modal-img      { width: 60%; }
-    .modal-comments { width: 40%; }
-    
-    .modal-img {
-      overflow : hidden; 
-      .border-bottom-left-radius(@baseBorderRadius * 3);
-    }
-    .modal-comments > .row-fluid {
-      padding : 10px;
-       
-      overflow : hidden;
-     .box-sizing(border-box); 
 
-      font-size   : 12px;
-      line-height : 1.5;
-      
-      &:nth-of-type(odd)  { 
-        border-bottom: 1px dashed #eee;
-        background-color : #f4f4f4; 
-      }
-      &:nth-of-type(even) { 
-        border-bottom: 1px dashed #ddd;
-        background-color : #fff; 
-      }
+    .modal-img      { width: 612px; }
+    .modal-comments { 
+      width      : 328px;
+      overflow-y : auto;
     }
+    
+    .media {
+      margin  : 0;
+      padding : 5px 10px;
+      
+      border-top    : 1px solid #fff;
+      border-bottom : 1px solid #eee;
+      
+      &:first-child       {
+        border-top : 1px solid #ddd;
+      }
+      &:nth-of-type(odd)  { background : #fff; }
+      &:nth-of-type(even) { background : #f4f4f4; }
+    }
+    
+    #image-stats {
+      padding : 6px 20px 8px 20px;
+      color : @white;
+     .buttonBackground(@btnPrimaryBackground, @btnPrimaryBackgroundHighlight);
+    }   
   }
 }
 
@@ -118,9 +99,10 @@
  .transition(all 100ms linear);
   
   .thumbnail {
-    min-height: 150px;
-    position : relative;
-    background: #fff;
+    min-height : 150px;
+    position   : relative;
+    background : #fff;
+    
     &:hover {
       border : 1px solid lighten(@linkColor,30%);
      .transition(all 100ms linear);
@@ -141,17 +123,28 @@
 
     // Preloader
     .loader {
-      width : 50px;
-      height: 50px;
-      margin-top: -25px;
-      margin-left: -25px;
+      width       : 50px;
+      height      : 50px;
+      margin-top  : -25px;
+      margin-left : -25px;
       
       position: absolute;
-      top : 50%;
-      left: 50%;
-      z-index: 1;
+      top     : 50%;
+      left    : 50%;
+      z-index : 1;
       
       background : url("http://img.cdn.tl/loading2.gif") center center no-repeat;
+    }
+    
+    .btn-video {
+      width      : 20px;
+      height     : 20px;
+      position   : absolute;
+      top        : 10px;
+      right      : 10px;
+      text-align : center;
+      background : rgba(255,255,255,0.75);
+     .border-radius(20px);
     }
         
     .btn-likes, .btn-comments {
@@ -175,4 +168,48 @@
   &.span6:nth-child(2n+3) { margin-left: 0 !important; }
 
 }
+  
+  // Loading Animation
+  // -----------------
 
+
+
+  @-ms-keyframes spinnr {
+      from { -ms-transform: rotate(0deg);   }
+      to   { -ms-transform: rotate(360deg); }
+  }
+  @-moz-keyframes spinnr {
+      from { -moz-transform: rotate(0deg);   }
+      to   { -moz-transform: rotate(360deg); }
+  }
+  @-webkit-keyframes spinnr {
+      from { -webkit-transform: rotate(0deg);   }
+      to   { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spinnr {
+      from { transform:rotate(0deg);   }
+      to   { transform:rotate(360deg); }
+  }
+
+.load-animate {
+  display : inline-block;
+  visibility: hidden;
+  // width   : 30px;
+  // height  : 30px;
+  
+  -moz-animation-name: spinnr;
+  -moz-animation-duration: 800ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;  
+
+  -webkit-animation-name: spinnr;
+  -webkit-animation-duration: 800ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;  
+
+  animation-name: spinnr;
+  animation-duration: 800ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;  
+
+}

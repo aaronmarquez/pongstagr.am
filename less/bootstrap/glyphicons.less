@@ -1,17 +1,18 @@
 //
-// Glyphicons
+// Glyphicons for Bootstrap
 // -----------------------------------------------------------------------------
 
 // About
 //
 // Glyphicons font-based icons require you to include all relevant font files,
-// found in the Bootstrap repo under /fonts/. Files are referenced relative to
-// the compiled CSS.
+// found in this project under the /fonts/ directory. Files are referenced relative
+// to the compiled CSS.
 //
 // Basic usage
 //
-// Since icons are fonts, they can be placed anywhere text is placed. To use,
-// create an inline element with the appropriate classes, like so:
+// Since icons are fonts, they can be placed anywhere text is placed and are
+// thus automatically sized to match the surrounding child. To use, create an
+// inline element with the appropriate classes, like so:
 //
 // <a href="#"><span class="glyphicon glyphicon-star"></span> Star</a>
 //
@@ -30,11 +31,10 @@
 
 // Catchall baseclass
 .glyphicon:before {
-  display: inline-block;
   font-family: 'Glyphicons Halflings';
   font-style: normal;
   font-weight: normal;
-  line-height: 1.5;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
 }
 

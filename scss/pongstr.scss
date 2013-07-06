@@ -1,0 +1,123 @@
+/*!
+ * jQuery Pongstagr.am Plugin 
+ * Copyright (c) 2013 Pongstr Ordillo
+ * Version: 2.1.0
+ * Code license under Apache License v2.0
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * Requires: jQuery v1.8+
+ */
+ 
+// Modal Window
+.md {
+  width:       70%;
+  max-width:   70%;
+  min-height:  480px;
+  margin-top:  0;
+  margin-left: -35%;
+  
+  visibility: hidden;  
+  opacity:    0;
+  
+  position: absolute;
+  z-index:  501;
+  top:  0;
+  left: 50%;
+  
+  // border: 1px solid #333;
+  background: rgba(#fff,0.95);
+ *background: #fff;
+  
+  @include border-radius(5px);
+  @include box-sizing(border-box);
+  @include box-shadow(0 4px 10px rgba(#000,0.25), 0 0 1px #fff inset);
+  
+  // Set box-sizing to all elements
+  &:before,
+  &:after,
+  * { @include box-sizing(border-box); }
+  
+  img {
+    display:        inline-block;
+    height:         auto;
+    max-width:      100%;
+    vertical-align: middle;
+  }
+}
+
+// Column Box Model
+[class*="md-column"] { 
+  float: left;
+  margin: 0;
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after { clear: both; }
+  
+  // Float first-child to the left
+  &:first-child {
+    @include border-left-radius(5px);
+    img { @include border-left-radius(5px); }
+  }
+
+  // Float last-child to the right  
+  &:last-child {
+    @include border-right-radius(5px);
+    img { @include border-right-radius(5px); }
+  }
+  
+  // Media Container
+  &.md-media {
+    width:       60%;
+    max-width:   60%;
+    min-height:  480px;
+    position:    relative;
+    background:  #fff;
+  }
+  
+  // Media Comment Container
+  &.md-content {
+    width:       40%;
+    min-height:  480px;
+    position:    relative;
+    overflow:    hidden;
+    border-left: 1px solid #ddd;
+  }
+  
+  .md-content-header {
+    width:      100%;
+    min-height: 30px;
+    margin:  0;
+    padding: 10px;
+    
+    border-bottom: 1px solid #ddd;
+    background:    #f4f4f4;
+    @include box-shadow(0 -1px 1px rgba(#fff,0.5) inset);
+  }
+  
+  .md-content-body {
+    clear:   both;
+    height:  100%;
+    margin:  0;
+    padding: 10px;
+  }
+}
+
+// Modal Backdrop Styles
+.md-overlay {
+  width:  100%;
+  height: 100%;
+  
+  position: fixed;
+  z-index:  500;
+  top:  0;
+  left: 0;
+  
+  cursor: pointer;
+  background: rgba(#000,0.75);
+ *background: #000; 
+}
+
+// Hide Modal Elements
+.md-overlay { display: none; }

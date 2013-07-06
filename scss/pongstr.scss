@@ -7,7 +7,128 @@
  * Requires: jQuery v1.8+
  */
  
-// Modal Window
+
+/* =========================================================================
+  Media Grid Styles
+  ========================================================================== */
+
+// Media Styles
+.pongstagram {
+  
+  width:  98%;
+  clear:   both;
+  margin:  20px auto;
+  padding: 20px;
+
+  border: 1px solid #ddd;
+  @include border-radius(5px);
+  @include box-sizing(border-box);
+  
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+    @include box-sizing(border-box);
+  }
+  &:after { clear: both; }
+  
+  > * {
+    &:before,
+    &:after {
+      content: "";
+      display: table;
+      @include box-sizing(border-box);
+    }    
+    &:after { clear: both; }
+  }
+
+  // Img Styles
+  img {
+    display:        inline-block;
+    height:         auto;
+    width:          100%;
+    max-width:      100%;
+    vertical-align: middle;
+  }
+  
+  // List Styles  
+  ul {
+    display: block;
+    clear:   both;
+    width:   100%;
+    margin:  5px -10px;
+    padding: 0 10px;
+    list-style: none;
+    
+    > li {
+      margin-top:     10px;
+      margin-bottom:  10px;
+      vertical-align: middle;
+      position:       relative;
+            
+    }
+  }
+  
+  // Media Block
+  .media {
+    margin: 0;
+    padding: 5px;
+    
+    cursor: pointer;
+    border: 1px solid #eee;
+    @include border-radius(4px);
+    @include transition(all 100ms linear);
+    
+    &:hover {
+      border: 1px solid rgba(#049cdb,0.4);
+      @include transition(all 100ms linear);
+      @include box-shadow(0 0 10px rgba(#049cdb,0.45));
+    }
+    
+    &:active {
+      border: 1px solid rgba(#049cdb,0.45);
+      @include transition(all 100ms linear);
+      @include box-shadow(0 0 18px rgba(#049cdb,0.45));
+    }
+  }
+  
+  // Columns
+  [class*="column-"] {
+    display: block;
+    float: left;
+    margin-left: 2.127659574468085%;
+    *margin-left: 2.074468085106383%;
+  }
+  
+  .column-6 {
+    width: 14.893617021276595%;
+    *width: 14.840425531914894%;    
+  }
+  .column-4 {
+    width: 23.404255319148934%;
+    *width: 23.351063829787233%;    
+  }  
+  .column-3 {
+    width: 31.914893617021278%;
+    *width: 31.861702127659576%;    
+  .column-2 {
+    width: 48.93617021276595%;
+    *width: 48.88297872340425%;    
+  }
+
+  // Fix for next-line breaking
+  .column-2:nth-child(2n+1),
+  .column-3:nth-child(3n+1),
+  .column-4:nth-child(4n+1),
+  .column-6:nth-child(6n+1) { margin-left: 0 !important;}
+}
+ 
+ 
+/* =========================================================================
+  Begin Modal Window 
+  ========================================================================== */
+
+/* Codes below needs to be optimised to comply with idiomatic css */  
 .md {
   width:       70%;
   max-width:   70%;

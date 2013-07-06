@@ -11,13 +11,17 @@
 
   "use strict";
   
+  // Begin Functions
+  
+  // Render HTML Markup
+  // ==================
   function renderHTML( targetElement, request, pager ){
     var galleryList       = '<ul></ul>',
         paginateTarget    = $(targetElement).attr('id'),
         paginateBtn       = '<a href="javascript:void(0);" class="btn" data-paginate="'+ paginateTarget +'">Load More</a>';
   
     $( targetElement )
-        .addClass( 'pongstagram' )
+        .addClass('pongstagram')
         .append( galleryList );
     
       if ( pager === null || pager === true ){
@@ -25,6 +29,8 @@
       }   
   }
 
+  // Image Preloader
+  // ===============
   function imagePreLoader( imageId ){
     var $image    = $( imageId ),
          spinner  = imageId + '-ldr',
@@ -39,6 +45,14 @@
     });
   }
   
+  // Render Modal Window
+  // ===================
+  function renderModal( usrImg, usrNam, comnts, likes ){
+    var modal = '<div class="overlay"></div>';
+  }
+  
+  // Ajax load media details
+  // =======================  
   function ajaxRequest( endpoint, targetElement ){
     $.ajax({
       method   : "GET"    ,
@@ -47,28 +61,45 @@
       dataType : "jsonp"  ,
       success  : function(data){
         
-          var injectTo = '#' + $(targetElement).attr('id'); 
+      var trgtId   = '#' + $(targetElement).attr('id');
         
+        // Loop through media
         $.each( data.data, function( key, value ){
-          
-          var thumbnail   = value.images.low_resolution.url,
-              imageId     = value.id,
-              imgFullRes  = value.images.standard_resolution.url,
-              imgCaption  = ( value.caption !== null ) ? ( value.caption.text !== null ) ? value.caption.text : '' : value.user.username;
-          
-          var thumbBlock  = '<li>';
-              thumbBlock += '<div id="'+ imageId +'-thmb-ldr" class="loader"></div>';
-              thumbBlock += '<a href="' + imgFullRes + '"><img src="' + thumbnail + '" alt="'+ imgCaption +'" id="' + value.id + '-thmb" /></a>';
-              thumbBlock += '</li>'; 
+              // thumnbnail low-res
+          var thmbnl = value.images.low_resolution.url,
+              // thumbnail standard-res
+              imgful = value.images.standard_resolution.url,
+              // image id
+              imgId  = value.id,
+              // user's profile (this can either be the owner or follower )
+              usrImg = value.user.profile_picture,
+              // user's username *duh
+              usrNam = value.user.username,
+              // the image/videos' caption
+              cption = ( value.caption !== null ) ? ( value.caption.text !== null ) ? value.caption.text : '' : value.username,
+              // the image/videos' comments
+              comnts = ( value.comments.count !== null ) ? value.comments.count : '0',
+              // the image/videos' like stats
+              likes  = ( value.likes.count !== null ) ? value.likes.count : '0';
 
-          // Append Images          
-          $( injectTo + ' ul' ).append( thumbBlock );
-          // Preload images
-          imagePreLoader( '#' + imageId + '-thmb' );
+          // Thumbnail Block
+          var thmBlk  = '<li>';
+              thmBlk += '<div id="'+ imgId +'-thmb-ldr" class="loader"></div>';
+              thmBlk += '<a href="' + imgful + '"><img src="' + thmbnl + '" alt="'+ cption +'" id="' + imgId + '-thmb" /></a>';
+              thmBlk += '</li>'; 
+
+          // Inject thumbnails to target container
+          $(trgtId + ' ul').append( thmBlk );
+
+          // Preload Image
+          imagePreLoader( '#' + imgId + '-thmb' );
+          
+          // Render Modal
+          renderModal(usrImg, usrNam, comnts, likes);
           
         });
-        
-        paginate( data.pagination.next_url, injectTo ); //*! paginate through images   
+        // paginate through instagram media
+        paginate( data.pagination.next_url, trgtId );
       }
     });
   }
@@ -93,6 +124,8 @@
     }
   }
 
+  // Identify Ajax Request
+  // =====================
   function requestData ( request, count, accessID, accessToken, targetElement, pager ){
     var $apiRequest   = 'https://api.instagram.com/v1/users/',  
         $requestCount = ( count !== null ) ?  
@@ -102,22 +135,19 @@
     
     if ( request === null || request === 'recent' ){
       var $recentMedia = $apiRequest + accessID + '/media/recent' + $requestCount; 
-          // Load Recent Media
-          ajaxRequest( $recentMedia, targetElement );
+          ajaxRequest( $recentMedia, targetElement ); // Load Recent Media
     }
     
     if ( request === 'liked' ){
       var $likedMedia = $apiRequest + 'self/media/liked' + $requestCount;
-          // Load Liked Media
-          ajaxRequest( $likedMedia, targetElement );
+          ajaxRequest( $likedMedia, targetElement ); // Load Liked Media
     }
 
     if ( request === 'feed' ){
       var $feedMedia = $apiRequest + 'self/feed' + $requestCount;
-          // Load User Feed
-          ajaxRequest( $feedMedia, targetElement );
+          ajaxRequest( $feedMedia, targetElement ); // Load User Feed
     }
-        
+    // Render plugin markup and data
     renderHTML( targetElement, loadBtnData, pager );
   }
   
@@ -140,7 +170,6 @@
       if ( accessDetails( option.accessId, option.accessToken ) !== false ){
         requestData( option.show, option.count, option.accessId, option.accessToken, element, option.pager );
       }     
-      
     });  //*! end return this.each;
   };     //*! end $.fn.pongstagrm;
 

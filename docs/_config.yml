@@ -1,0 +1,5 @@
+name       : pongstr
+permalink  : pretty
+exclude    : ['.sass-cache', 'scss']
+source     : .
+destination: ../gh-pages

@@ -2,7 +2,7 @@
 # Require any additional compass plugins here.
 # =============================================================================
  
-# Uncomment if you are using Zurb Foundation
+# Uncomment if you are using Bootstrap-SASS
 # require 'bootstrap-sass' 
  
  

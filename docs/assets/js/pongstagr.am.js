@@ -1,7 +1,7 @@
 /*!
  * jQuery Pongstagr.am Plugin 
  * Copyright (c) 2013 Pongstr Ordillo
- * Version: 2.0.6
+ * Version: 2.1.0
  * Code license under Apache License v2.0
  * http://www.apache.org/licenses/LICENSE-2.0
  * Requires: jQuery v1.8+
@@ -53,7 +53,7 @@
   
   // Ajax load media details
   // =======================  
-  function ajaxRequest( endpoint, targetElement ){
+  function ajaxRequest( endpoint, targetElement, column ){
     $.ajax({
       method   : "GET"    ,
       url      : endpoint ,
@@ -61,7 +61,8 @@
       dataType : "jsonp"  ,
       success  : function(data){
         
-      var trgtId   = '#' + $(targetElement).attr('id');
+      var trgtId   = '#' + $(targetElement).attr('id'),
+          dfltCol  = ( column !== null ) ? column : 'column-4';
         
         // Loop through media
         $.each( data.data, function( key, value ){
@@ -83,9 +84,11 @@
               likes  = ( value.likes.count !== null ) ? value.likes.count : '0';
 
           // Thumbnail Block
-          var thmBlk  = '<li>';
-              thmBlk += '<div id="'+ imgId +'-thmb-ldr" class="loader"></div>';
+          var thmBlk  = '<li class="' + dfltCol + '">';
+              thmBlk += '<div class="media">';
+              thmBlk += '<div id="' + imgId + '-thmb-ldr" class="loader"></div>';
               thmBlk += '<a href="' + imgful + '"><img src="' + thmbnl + '" alt="'+ cption +'" id="' + imgId + '-thmb" /></a>';
+              thmBlk += '</div>';
               thmBlk += '</li>'; 
 
           // Inject thumbnails to target container
@@ -99,12 +102,12 @@
           
         });
         // paginate through instagram media
-        paginate( data.pagination.next_url, trgtId );
+        paginate( data.pagination.next_url, trgtId, dfltCol );
       }
     });
   }
 
-  function paginate( nextUrl, targetElement ){
+  function paginate( nextUrl, targetElement, column ){
     
     var pagBtn = $(targetElement).attr('id');
     
@@ -118,7 +121,7 @@
     } else {
       $('[data-paginate="' + pagBtn + '"]').click(function(event){
         event.preventDefault();
-          ajaxRequest( nextUrl, targetElement );  //*! Load Succeeding Pages.
+          ajaxRequest( nextUrl, targetElement, column );  //*! Load Succeeding Pages.
           $(this).unbind(event);   //*! Unbind all attached events.
       });
     }
@@ -126,7 +129,7 @@
 
   // Identify Ajax Request
   // =====================
-  function requestData ( request, count, accessID, accessToken, targetElement, pager ){
+  function requestData ( request, count, accessID, accessToken, targetElement, pager, column ){
     var $apiRequest   = 'https://api.instagram.com/v1/users/',  
         $requestCount = ( count !== null ) ?  
           '?count=' +  count + '&access_token=' + accessToken :
@@ -135,17 +138,17 @@
     
     if ( request === null || request === 'recent' ){
       var $recentMedia = $apiRequest + accessID + '/media/recent' + $requestCount; 
-          ajaxRequest( $recentMedia, targetElement ); // Load Recent Media
+          ajaxRequest( $recentMedia, targetElement, column ); // Load Recent Media
     }
     
     if ( request === 'liked' ){
       var $likedMedia = $apiRequest + 'self/media/liked' + $requestCount;
-          ajaxRequest( $likedMedia, targetElement ); // Load Liked Media
+          ajaxRequest( $likedMedia, targetElement, column ); // Load Liked Media
     }
 
     if ( request === 'feed' ){
       var $feedMedia = $apiRequest + 'self/feed' + $requestCount;
-          ajaxRequest( $feedMedia, targetElement ); // Load User Feed
+          ajaxRequest( $feedMedia, targetElement, column ); // Load User Feed
     }
     // Render plugin markup and data
     renderHTML( targetElement, loadBtnData, pager );
@@ -168,7 +171,7 @@
 
     return this.each( function(i, element){
       if ( accessDetails( option.accessId, option.accessToken ) !== false ){
-        requestData( option.show, option.count, option.accessId, option.accessToken, element, option.pager );
+        requestData( option.show, option.count, option.accessId, option.accessToken, element, option.pager, option.columns );
       }     
     });  //*! end return this.each;
   };     //*! end $.fn.pongstagrm;
@@ -184,8 +187,8 @@
     show         : null,  // string,  options: 'recent', 'feed', 'liked', 'user'
     count        : null,  // integer, options: 1(min) - 40(max), instagram limits the maximum number of photos to 40
     resolution   : null,  // string,  options: 'low_resolution', 'standard_resolution'
-    pager        : null   // boolean, options:  true or false (enables/disable load more button)
-    
+    pager        : null,  // boolean, options:  true or false (enables/disable load more button)
+    columns      : null   // string,  options:  column-2, column-3, column-4, column-6
   };
    
  })(jQuery, window, document);

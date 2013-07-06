@@ -1,4 +1,0 @@
-name       : pongstr
-permalink  : pretty
-source     : ./docs
-destination: ./gh-pages

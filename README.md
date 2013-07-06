@@ -2,8 +2,7 @@ Pongstagr.am - Instagram Plugin
 ==============================================
 by Pongstr [twiz.tickler@gmail.com | www.pongstr.com ]
 
-Pongstagr.am is a jquery plugin that lets you display your instagram media to
-your website.
+Pongstagr.am is a jquery plugin that lets you display your instagram media to your website.
 
 
 **Plugin Requirements**
@@ -77,9 +76,11 @@ pager      : null     // boolean, options:  true or false (enables/disable load 
 </script>
 ```
 
-
-**License:**
+---------
+**Work In Progress**
 
 ---------
+
+**License:**
 
 Free to use, Code license under [Apache v2.0](http://www.apache.org/licenses/LICENSE-2.0).

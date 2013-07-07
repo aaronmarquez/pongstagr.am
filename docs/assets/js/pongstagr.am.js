@@ -47,16 +47,20 @@
   
   // Render Modal Window
   // ===================
-  function renderModal(){
+  function renderModal( mediaId, mediaSrc, mediaCap ){
 
-    var $mdOvrly = $('.md-overlay');
+    var mdOvrly   = $('.md-overlay'),
+        mdMedia   = '<div class="md-media md-column"><img src="' + mediaSrc + '" alt="' + mediaCap + '" /></div>',
+        mdContent = '<div class="md-content md-column">',
+        mdWindow  = '<div class="md" id="' + mediaId + '" >' + mdMedia + mdContent + '</div>';
+
+    // Modal Window
+    $('body').append(mdWindow);
     
-    // Add overlay if 
-    if ( ! $mdOvrly.length > 0 ){
+    // Modal Overlay
+    if ( mdOvrly.length > 0 ){
       $('body').append('<div class="md-overlay">');
-    }
-    
-    
+    }    
   }
   
   // Ajax load media details
@@ -108,7 +112,12 @@
           // Load Media's Modal Window
           $('[data-modal-id="' + imgId + '-modal"]'). click(function(e){
             e.preventDefault();
-          renderModal();
+            
+            // Inject Modal Window to Body
+            renderModal( imgId, imgful, cption );
+            
+            
+                                    
           });  
         });
         // paginate through instagram media

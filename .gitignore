@@ -21,3 +21,6 @@ _site/
 test.*
 tests.*
 testing.*
+docs/test.*
+docs/tests.*
+docs/testing.*

@@ -18,7 +18,7 @@
   function renderHTML( targetElement, request, pager ){
     var galleryList       = '<ul></ul>',
         paginateTarget    = $(targetElement).attr('id'),
-        paginateBtn       = '<a href="javascript:void(0);" class="btn" data-paginate="'+ paginateTarget +'">Load More</a>';
+        paginateBtn       = '<a href="javascript:void(0);" class="button" data-paginate="'+ paginateTarget +'">Load More</a>';
   
     $( targetElement )
         .addClass('pongstagram')
@@ -47,8 +47,16 @@
   
   // Render Modal Window
   // ===================
-  function renderModal( usrImg, usrNam, comnts, likes ){
-    var modal = '<div class="overlay"></div>';
+  function renderModal(){
+
+    var $mdOvrly = $('.md-overlay');
+    
+    // Add overlay if 
+    if ( ! $mdOvrly.length > 0 ){
+      $('body').append('<div class="md-overlay">');
+    }
+    
+    
   }
   
   // Ajax load media details
@@ -87,9 +95,9 @@
           var thmBlk  = '<li class="' + dfltCol + '">';
               thmBlk += '<div class="media">';
               thmBlk += '<div id="' + imgId + '-thmb-ldr" class="loader"></div>';
-              thmBlk += '<a href="' + imgful + '"><img src="' + thmbnl + '" alt="'+ cption +'" id="' + imgId + '-thmb" /></a>';
+              thmBlk += '<a data-modal-id="' + imgId + '-modal" href="' + imgful + '"><img src="' + thmbnl + '" alt="'+ cption +'" id="' + imgId + '-thmb" /></a>';
               thmBlk += '</div>';
-              thmBlk += '</li>'; 
+              thmBlk += '</li>';
 
           // Inject thumbnails to target container
           $(trgtId + ' ul').append( thmBlk );
@@ -97,9 +105,11 @@
           // Preload Image
           imagePreLoader( '#' + imgId + '-thmb' );
           
-          // Render Modal
-          renderModal(usrImg, usrNam, comnts, likes);
-          
+          // Load Media's Modal Window
+          $('[data-modal-id="' + imgId + '-modal"]'). click(function(e){
+            e.preventDefault();
+          renderModal();
+          });  
         });
         // paginate through instagram media
         paginate( data.pagination.next_url, trgtId, dfltCol );

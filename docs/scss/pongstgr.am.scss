@@ -11,13 +11,24 @@
 // Compass CSS3 Mixins
 @import "compass/css3";
 
+
+/**
+ * Normalize.css
+ * include this stylesheet if you're not using one or if it's not going to 
+ * conflict with your stylesheet. This can help your styles consistent on
+ * all browsers.
+ *
+ * @import url("normalize.css");
+ *
+ */
+ 
+
 /* =========================================================================
   Media Grid Styles
   ========================================================================== */
 
 .pongstagram {
   
-  width:  98%;
   clear:   both;
   margin:  20px auto;
   padding: 20px;
@@ -35,6 +46,7 @@
   &:after { clear: both; }
   
   > * {
+    &:focus { outline: 0 none; }
     &:before,
     &:after {
       content: "";
@@ -146,7 +158,44 @@
   .column-2:nth-child(2n+1),
   .column-3:nth-child(3n+1),
   .column-4:nth-child(4n+1),
-  .column-6:nth-child(6n+1) { margin-left: 0 !important;}  
+  .column-6:nth-child(6n+1) { margin-left: 0 !important;}
+  
+  .button {
+    display: inline-block;
+    margin: 5px auto;
+    padding: 8px 16px;
+    
+    font-family: "Helvetica Neue", "Helvetica", sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    text-shadow: 0 1px 1px #fff;
+    text-decoration: none;
+    border: 1px solid #d2d2d2;
+    background-color: #f4f4f4;
+    
+    @include filter-gradient(#f4f4f4, #dddddd, vertical);
+    @include background-image(linear-gradient(top, #f4f4f4 0%,#dddddd 100%));
+    @include box-shadow(0 1px 1px #fff inset);
+    @include border-radius(4px);  
+    @include transition(all 150ms linear);
+    
+    &:hover {
+      background-color: lighten(#f4f4f4,5%);
+      @include filter-gradient(lighten(#f4f4f4,5%), lighten(#dddddd,5%), vertical);
+      @include background-image(linear-gradient(top, lighten(#f4f4f4,5%) 0%, lighten(#dddddd,5%) 100%));
+      @include box-shadow(0 1px 1px #fff inset, 0 1px 3px rgba(#666,0.25));
+      @include transition(all 150ms linear);
+      @include box-shadow(0 1px 1px #fff inset, 0 2px 3px rgba(#666,0.15));
+    }
+    
+    &:active {
+      @include transition(all 150ms linear);
+      @include box-shadow(0 1px 1px #fff inset, 0 3px 4px rgba(#666,0.25));
+    }
+    
+  }
 }
  
  

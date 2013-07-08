@@ -52,15 +52,16 @@
     var mdOvrly   = $('.md-overlay'),
         mdMedia   = '<div class="md-media md-column"><img src="' + mediaSrc + '" alt="' + mediaCap + '" /></div>',
         mdContent = '<div class="md-content md-column">',
-        mdWindow  = '<div class="md" id="' + mediaId + '" >' + mdMedia + mdContent + '</div>';
+        mdWindow  = '<div class="md fade-out" id="' + mediaId + '">' + mdMedia + mdContent + '</div>';
 
     // Modal Window
     $('body').append(mdWindow);
     
     // Modal Overlay
-    if ( mdOvrly.length > 0 ){
-      $('body').append('<div class="md-overlay">');
-    }    
+    if ( ! mdOvrly.length ){
+      $('body').append('<div class="md-overlay fade-out">');
+    }
+    
   }
   
   // Ajax load media details
@@ -111,10 +112,21 @@
           
           // Load Media's Modal Window
           $('[data-modal-id="' + imgId + '-modal"]'). click(function(e){
+            
+            var status = $('#' + imgId ).attr('data-hidden');
+            
+            
             e.preventDefault();
             
             // Inject Modal Window to Body
             renderModal( imgId, imgful, cption );
+            
+              
+                $('#' + imgId + ', .overlay' )
+                  .removeClass('fade-out')
+                  .addClass('fade-in')
+                  .attr('data-hidden', false);
+              
             
             
                                     
